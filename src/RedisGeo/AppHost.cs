@@ -15,7 +15,7 @@ namespace RedisGeo
         /// Base constructor requires a name and assembly to locate web service classes. 
         /// </summary>
         public AppHost()
-            : base("RedisGeo", typeof(RedisGeoServices).Assembly) {}
+            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly()) {}
 
         public override void Configure(Container container)
         {
@@ -28,10 +28,10 @@ namespace RedisGeo
             ImportCountry(container.Resolve<IRedisClientsManager>(), "US");
         }
 
-        public static void ImportCountry(IRedisClientsManager redisManager, string countryCode)
+        public void ImportCountry(IRedisClientsManager redisManager, string countryCode)
         {
             using (var redis = redisManager.GetClient())
-            using (var reader = new StreamReader(File.OpenRead("~/App_Data/{0}.txt".Fmt(countryCode).MapHostAbsolutePath())))
+            using (var reader = new StreamReader(File.OpenRead(MapProjectPath($"~/App_Data/{countryCode}.txt"))))
             {
                 string line, lastState = null, lastCity = null;
                 var results = new List<ServiceStack.Redis.RedisGeo>();
