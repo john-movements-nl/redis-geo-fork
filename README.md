@@ -44,7 +44,7 @@ US cities as well as their useful longitude and latitude coordinates.
 
 The dataset is maintained in a tab-delimited `US.txt` text file which we do a fresh import of using the
 [ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis) C# Client when the 
-[AppHost](https://github.com/ServiceStackApps/redis-geo/blob/master/src/RedisGeo/RedisGeo/AppHost.cs) 
+[AppHost](https://github.com/NetCoreApps/redis-geo/blob/master/src/RedisGeo/AppHost.cs) 
 first starts up:
 
 ```csharp
@@ -102,7 +102,7 @@ public class AppHost : AppHostBase
 ```
 
 This just parses the `US.txt` file in our Web Applications 
-[/App_Data](https://github.com/ServiceStackApps/redis-geo/tree/master/src/RedisGeo/RedisGeo/App_Data) 
+[/App_Data](https://github.com/NetCoreApps/redis-geo/tree/master/src/RedisGeo/App_Data) 
 folder and extracts the **state** which we'll use as the key for our Redis GEO sorted set and populate 
 it with the **longitude** and **latitude** of each **city**, skipping any duplicates. The script also 
 imports the dataset for each state in separate batches using 
@@ -111,7 +111,7 @@ imports the dataset for each state in separate batches using
 ### Implement the FindGeoResults Service
 
 Our App only needs a single Service which we define the contract with using the 
-[FindGeoResults](https://github.com/ServiceStackApps/redis-geo/blob/master/src/RedisGeo/RedisGeo.ServiceModel/FindGeoResults.cs)
+[FindGeoResults](https://github.com/NetCoreApps/redis-geo/blob/master/src/RedisGeo.ServiceModel/FindGeoResults.cs)
 Request DTO:
 
 ```csharp
@@ -126,7 +126,7 @@ public class FindGeoResults : IReturn<List<RedisGeoResult>>
 ```
 
 That's the only DTO our App needs which returns a `List<RedisGeoResult>`. Implementing the 
-[RedisGeoServices](https://github.com/ServiceStackApps/redis-geo/blob/master/src/RedisGeo/RedisGeo.ServiceInterface/RedisGeoServices.cs) 
+[RedisGeoServices](https://github.com/NetCoreApps/redis-geo/blob/master/src/RedisGeo.ServiceInterface/RedisGeoServices.cs) 
 is then just a matter fulfilling the above contract by delegating our populated Request DTO properties to the
 `IRedisClient.FindGeoResultsInRadius()` Redis Client API which itself just calls 
 [GEORADIUS](http://redis.io/commands/georadius) and returns its results:
@@ -149,7 +149,7 @@ public class RedisGeoServices : Service
 ## Implement the Client
 
 The entire client App is implemented in the static
-[default.html](https://github.com/ServiceStackApps/redis-geo/blob/master/src/RedisGeo/RedisGeo/default.html)
+[default.html](https://github.com/NetCoreApps/redis-geo/blob/master/src/RedisGeo/wwwroot/default.html)
 which is just a jQuery App that just consists of the following markup:
 
 ```html
@@ -261,7 +261,7 @@ use-cases possible with these new capabilities.
 
 Whilst this example just imports US cities, you can change it to import your preferred country instead by
 extracting the [Geonames](http://download.geonames.org/export/zip/) dataset and copying it into the 
-[/App_Data](https://github.com/ServiceStackApps/redis-geo/tree/master/src/RedisGeo/RedisGeo/App_Data) 
+[/App_Data](https://github.com/NetCoreApps/redis-geo/tree/master/src/RedisGeo/App_Data) 
 folder then calling `ImportCountry()` with its country code.
 
 E.g. we can import Ausrtalian Suburbs instead with:
