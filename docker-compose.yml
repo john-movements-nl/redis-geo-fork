@@ -1,0 +1,10 @@
+web:
+  build: ./src
+  ports:
+    - "5000:5000"
+  links:
+    - redis
+redis:
+  image: redis:3.2
+  ports:
+    - "6379:6379"
