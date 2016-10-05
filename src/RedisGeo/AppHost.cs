@@ -4,7 +4,6 @@ using Funq;
 using ServiceStack;
 using RedisGeo.ServiceInterface;
 using ServiceStack.Redis;
-using ServiceStack.Text;
 
 namespace RedisGeo
 {
@@ -19,8 +18,6 @@ namespace RedisGeo
 
         public override void Configure(Container container)
         {
-            JsConfig.EmitCamelCaseNames = true;
-
             //Requires GEO commands in v4.0.57 pre-release packages from MyGet: https://github.com/ServiceStack/ServiceStack/wiki/MyGet
             container.Register<IRedisClientsManager>(c => 
                 new RedisManagerPool(AppSettings.Get("RedisHost", defaultValue:"localhost:6379")));
