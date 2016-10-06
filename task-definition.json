@@ -1,0 +1,44 @@
+{
+    "family": "__ECS_TASK__",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "image": "__AWS_ECS_REPO_DOMAIN__/__IMAGE_NAME__:__IMAGE_VERSION__",
+            "name": "__IMAGE_NAME__-container",
+            "cpu": 128,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 5002,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "VIRTUAL_HOST",
+                    "value": "redis-geo.layoric.org"
+                },
+                {
+                    "name": "VIRTUAL_PORT",
+                    "value": "5002"
+                }
+            ]
+        },
+        {
+            "name": "redis",
+            "image": "redis:3.2",
+            "memory": "128",
+            "cpu": "128",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": "6379",
+                    "containerPort": "6379",
+                    "protocol": "tcp"
+                }
+            ]
+        }
+    ]
+}

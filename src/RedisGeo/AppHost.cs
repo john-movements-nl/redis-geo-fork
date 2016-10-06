@@ -3,6 +3,7 @@ using System.IO;
 using Funq;
 using ServiceStack;
 using RedisGeo.ServiceInterface;
+using ServiceStack.Configuration;
 using ServiceStack.Redis;
 
 namespace RedisGeo
@@ -14,7 +15,12 @@ namespace RedisGeo
         /// Base constructor requires a name and assembly to locate web service classes. 
         /// </summary>
         public AppHost()
-            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly()) {}
+            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly()) {
+                 var customSettings = new FileInfo(@"~/appsettings.txt".MapHostAbsolutePath());
+                 if(customSettings.Exists) {
+                     AppSettings = (IAppSettings)new TextFileSettings(customSettings.FullName);
+                 }
+            }
 
         public override void Configure(Container container)
         {
