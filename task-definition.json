@@ -18,7 +18,7 @@
             "environment": [
                 {
                     "name": "VIRTUAL_HOST",
-                    "value": "redis-geo.layoric.org"
+                    "value": "redisgeo.netcore.io"
                 },
                 {
                     "name": "VIRTUAL_PORT",

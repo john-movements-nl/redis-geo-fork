@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set variables
-export IMAGE_NAME=netcoreapps-redis-geo
+export IMAGE_NAME=netcoreapps-redisgeo
 export IMAGE_VERSION=latest
 
-export AWS_DEFAULT_REGION=ap-southeast-2
+export AWS_DEFAULT_REGION=us-east-1
 export AWS_ECS_CLUSTER_NAME=default
 #AWS_ACCOUNT_NUMBER={} set in private variable
 export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
