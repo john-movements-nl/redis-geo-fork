@@ -13,7 +13,7 @@ matrix:
       env: DOTNETCORE=1
 script:
   - chmod +x ./set-envs.sh
-  - chmod +x ./build.sh
-  - chmod +x ./deploy.sh
-  - ./build.sh
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
+  - chmod +x ./build/build.sh
+  - chmod +x ./build/deploy.sh
+  - ./build/build.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./build/deploy.sh; fi

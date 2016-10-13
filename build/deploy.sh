@@ -1,16 +1,19 @@
 #!/bin/bash
 source ./set-envs.sh
 
-# Update task definition with env values
-sed "s/__ECS_TASK__/$ECS_TASK/g" -i ./task-definition.json
-sed "s/__IMAGE_NAME__/$IMAGE_NAME/g" -i ./task-definition.json
-sed "s/__AWS_ECS_REPO_DOMAIN__/$AWS_ECS_REPO_DOMAIN/g" -i ./task-definition.json
-sed "s/__IMAGE_VERSION__/$IMAGE_VERSION/g" -i ./task-definition.json
+#AWS_ACCOUNT_NUMBER={} set in private variable
+export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+export ECS_SERVICE=$IMAGE_NAME-service
+export ECS_TASK=$IMAGE_NAME-task
 
 # install dependencies
-sudo apt-get install jq #install jq for json parsing
+sudo apt-get install jq -y #install jq for json parsing
+sudo apt-get install gettext -y 
 pip install --user awscli # install aws cli w/o sudo
 export PATH=$PATH:$HOME/.local/bin # put aws in the path
+
+# replace environment variables in task-definition
+envsubst < task-definition.json
 
 eval $(aws ecr get-login --region $AWS_DEFAULT_REGION) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
 docker push $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:$IMAGE_VERSION
