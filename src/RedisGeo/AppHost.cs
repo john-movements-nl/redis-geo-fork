@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System;
 using Funq;
 using ServiceStack;
 using RedisGeo.ServiceInterface;
