@@ -16,4 +16,4 @@ script:
   - chmod +x ./build/build.sh
   - chmod +x ./build/deploy.sh
   - ./build/build.sh
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./build/deploy.sh; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then cd build && ./deploy.sh; fi
