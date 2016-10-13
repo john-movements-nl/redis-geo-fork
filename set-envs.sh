@@ -10,5 +10,4 @@ export AWS_ECS_CLUSTER_NAME=default
 export AWS_VIRTUAL_HOST=redisgeo.netcore.io
 export AWS_ECS_HOST_PORT=5002
 
-export AWS_REDIS_HOST=redis
-export AWS_ECS_REDIS_PORT=6379
+export AWS_REDIS_HOST=redis-redisgeo

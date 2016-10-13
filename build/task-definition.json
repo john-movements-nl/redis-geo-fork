@@ -8,6 +8,7 @@
             "cpu": 128,
             "memory": 256,
             "essential": true,
+            "links": ["${AWS_REDIS_HOST}"],
             "portMappings": [
                 {
                     "containerPort": 5000,
@@ -35,14 +36,7 @@
             "image": "redis:3.2",
             "cpu": 128,
             "memory": 128,
-            "essential": true,
-            "portMappings": [
-                {
-                    "hostPort": ${AWS_ECS_REDIS_PORT},
-                    "containerPort": 6379,
-                    "protocol": "tcp"
-                }
-            ]
+            "essential": true
         }
     ]
 }
