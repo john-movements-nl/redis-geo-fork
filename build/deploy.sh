@@ -13,11 +13,11 @@ pip install --user awscli # install aws cli w/o sudo
 export PATH=$PATH:$HOME/.local/bin # put aws in the path
 
 # replace environment variables in task-definition
-envsubst < task-definition.json
+envsubst < task-definition.json > new-task-definition.json
 
 eval $(aws ecr get-login --region $AWS_DEFAULT_REGION) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
 docker push $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:$IMAGE_VERSION
-aws ecs register-task-definition --cli-input-json file://task-definition.json --region $AWS_DEFAULT_REGION > /dev/null # Create a new task revision
+aws ecs register-task-definition --cli-input-json file://new-task-definition.json --region $AWS_DEFAULT_REGION > /dev/null # Create a new task revision
 TASK_REVISION=$(aws ecs describe-task-definition --task-definition $ECS_TASK --region $AWS_DEFAULT_REGION | jq '.taskDefinition.revision') #get latest revision
 SERVICE_ARN="arn:aws:ecs:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_NUMBER:service/$ECS_SERVICE"
 ECS_SERVICE_EXISTS=$(aws ecs list-services --region $AWS_DEFAULT_REGION --cluster $AWS_ECS_CLUSTER_NAME | jq '.serviceArns' | jq 'contains(["'"$SERVICE_ARN"'"])')
