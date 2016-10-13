@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./set-envs.sh
+source ../set-envs.sh
 
 #AWS_ACCOUNT_NUMBER={} set in private variable
 export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com

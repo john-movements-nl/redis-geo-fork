@@ -15,5 +15,5 @@ script:
   - chmod +x ./set-envs.sh
   - chmod +x ./build/build.sh
   - chmod +x ./build/deploy.sh
-  - ./build/build.sh
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then cd build && ./deploy.sh; fi
+  - cd build && ./build.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
