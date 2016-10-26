@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System;
 using Funq;
 using ServiceStack;
 using RedisGeo.ServiceInterface;
@@ -16,19 +15,17 @@ namespace RedisGeo
         /// Base constructor requires a name and assembly to locate web service classes. 
         /// </summary>
         public AppHost()
-            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly()) {
-                 var customSettings = new FileInfo(@"~/appsettings.txt".MapHostAbsolutePath());
-                 if(customSettings.Exists) {
-                     AppSettings = (IAppSettings)new TextFileSettings(customSettings.FullName);
-                 }
-            }
+            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly())
+        {
+            AppSettings = new MultiAppSettings(
+                new EnvironmentVariableSettings(),
+                new AppSettings());
+        }
 
         public override void Configure(Container container)
         {
-            //Requires GEO commands in v4.0.57 pre-release packages from MyGet: https://github.com/ServiceStack/ServiceStack/wiki/MyGet
-            var configuredRedisHost = Environment.GetEnvironmentVariable("AWS_REDIS_HOST") ?? "localhost";
-            container.Register<IRedisClientsManager>(c => 
-                new RedisManagerPool(AppSettings.Get("RedisHost", defaultValue: $"{configuredRedisHost}:6379")));
+            container.Register<IRedisClientsManager>(c =>
+                new RedisManagerPool(AppSettings.Get("REDIS_HOST", defaultValue:"localhost")));
 
             ImportCountry(container.Resolve<IRedisClientsManager>(), "US");
         }
