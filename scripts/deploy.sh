@@ -1,10 +1,10 @@
 #!/bin/bash
 source ../deploy-envs.sh
 
-#AWS_ACCOUNT_NUMBER={} set in private variable
 export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
 export ECS_SERVICE=$IMAGE_NAME-service
 export ECS_TASK=$IMAGE_NAME-task
+export REDIS_HOST=$IMAGE_NAME-redis
 
 # install dependencies
 sudo apt-get install jq -y #install jq for json parsing

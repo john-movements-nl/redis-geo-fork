@@ -4,11 +4,11 @@
     "containerDefinitions": [
         {
             "image": "${AWS_ECS_REPO_DOMAIN}/${IMAGE_NAME}:${IMAGE_VERSION}",
-            "name": "${IMAGE_NAME}-container",
+            "name": "${IMAGE_NAME}",
             "cpu": 128,
             "memory": 256,
             "essential": true,
-            "links": ["${AWS_REDIS_HOST}"],
+            "links": ["${REDIS_HOST}"],
             "portMappings": [
                 {
                     "containerPort": 5000,
@@ -22,13 +22,17 @@
                     "value": "${AWS_VIRTUAL_HOST}"
                 },
                 {
-                    "name": "AWS_REDIS_HOST",
-                    "value": "${AWS_REDIS_HOST}"
+                    "name": "SERVICESTACK_LICENSE",
+                    "value": "${SERVICESTACK_LICENSE}"
+                },
+                {
+                    "name": "REDIS_HOST",
+                    "value": "${REDIS_HOST}"
                 }
             ]
         },
         {
-            "name": "${AWS_REDIS_HOST}",
+            "name": "${REDIS_HOST}",
             "image": "redis:3.2",
             "cpu": 128,
             "memory": 128,
