@@ -11,8 +11,8 @@ namespace RedisGeo
     public class AppHost : AppHostBase
     {
         /// <summary>
-        /// Default constructor.
-        /// Base constructor requires a name and assembly to locate web service classes. 
+        /// Configure your ServiceStack AppHost singleton instance:
+        /// Call base constructor with App Name and assembly where Service classes are located
         /// </summary>
         public AppHost()
             : base("RedisGeo", typeof(RedisGeoServices).GetAssembly())
