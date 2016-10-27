@@ -27,12 +27,12 @@
                 },
                 {
                     "name": "REDIS_HOST",
-                    "value": "${${IMAGE_NAME}-redis}"
+                    "value": "${IMAGE_NAME}-redis"
                 }
             ]
         },
         {
-            "name": "${${IMAGE_NAME}-redis}",
+            "name": "${IMAGE_NAME}-redis",
             "image": "redis:3.2",
             "cpu": 128,
             "memory": 128,
