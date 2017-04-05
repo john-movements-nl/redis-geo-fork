@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisGeo", "RedisGeo\RedisGeo.xproj", "{EAF8171A-B8E6-4BC3-9A10-6F6C29E7A394}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisGeo", "RedisGeo\RedisGeo.csproj", "{EAF8171A-B8E6-4BC3-9A10-6F6C29E7A394}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisGeo.ServiceModel", "RedisGeo.ServiceModel\RedisGeo.ServiceModel.xproj", "{D6E47201-1CF1-48DA-8B40-7418070EC783}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisGeo.ServiceModel", "RedisGeo.ServiceModel\RedisGeo.ServiceModel.csproj", "{D6E47201-1CF1-48DA-8B40-7418070EC783}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RedisGeo.ServiceInterface", "RedisGeo.ServiceInterface\RedisGeo.ServiceInterface.xproj", "{E532E09D-D750-4A9F-B682-E7BA1508EA2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisGeo.ServiceInterface", "RedisGeo.ServiceInterface\RedisGeo.ServiceInterface.csproj", "{E532E09D-D750-4A9F-B682-E7BA1508EA2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
