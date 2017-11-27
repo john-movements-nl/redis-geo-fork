@@ -15,12 +15,7 @@ namespace RedisGeo
         /// Call base constructor with App Name and assembly where Service classes are located
         /// </summary>
         public AppHost()
-            : base("RedisGeo", typeof(RedisGeoServices).GetAssembly())
-        {
-            AppSettings = new MultiAppSettings(
-                new EnvironmentVariableSettings(),
-                new AppSettings());
-        }
+            : base("RedisGeo", typeof(RedisGeoServices).Assembly) {}
 
         public override void Configure(Container container)
         {
